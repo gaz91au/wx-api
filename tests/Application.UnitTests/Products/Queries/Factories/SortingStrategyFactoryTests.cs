@@ -17,7 +17,7 @@ namespace Application.UnitTests.Products.Queries.Factories
         }
 
         [Fact]
-        public void GivenAscendingSortOption_AscendingSortingStrategy()
+        public void GivenAscendingSortOption_ShouldReturn_AscendingSortingStrategy()
         {
             // Arrange
             var option = SortOption.Ascending;
@@ -30,7 +30,7 @@ namespace Application.UnitTests.Products.Queries.Factories
         }
 
         [Fact]
-        public void GivenDescendingSortOption_DescendingSortingStrategy()
+        public void GivenDescendingSortOption_ShouldReturn_DescendingSortingStrategy()
         {
             // Arrange
             var option = SortOption.Descending;
@@ -43,7 +43,7 @@ namespace Application.UnitTests.Products.Queries.Factories
         }
 
         [Fact]
-        public void GivenHighSortOption_HighSortingStrategy()
+        public void GivenHighSortOption_ShouldReturn_HighSortingStrategy()
         {
             // Arrange
             var option = SortOption.High;
@@ -56,7 +56,7 @@ namespace Application.UnitTests.Products.Queries.Factories
         }
 
         [Fact]
-        public void GivenLowSortOption_LowSortingStrategy()
+        public void GivenLowSortOption_ShouldReturn_LowSortingStrategy()
         {
             // Arrange
             var option = SortOption.Low;
@@ -69,7 +69,7 @@ namespace Application.UnitTests.Products.Queries.Factories
         }
 
         [Fact]
-        public void GivenRecommendedSortOption_RecommendedSortingStrategy()
+        public void GivenRecommendedSortOption_ShouldReturn_RecommendedSortingStrategy()
         {
             // Arrange
             var option = SortOption.Recommended;
