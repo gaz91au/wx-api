@@ -47,28 +47,19 @@ namespace Application.Products.Queries.Strategies
                                                 Quantity = p.Sum(s => s.Quantity)
                                             });
 
-            var productWithQuantities = new List<Product>();
-
             foreach (var product in products)
             {
-                var totalQuantity = 0m;
-
                 var productHistory = groupedPurchasedProducts.FirstOrDefault(s => s.Name == product.Name);
 
                 if (productHistory != null)
                 {
-                    totalQuantity = productHistory.Quantity;
-                }
+                    var index = products.IndexOf(product);
 
-                productWithQuantities.Add(new Product
-                {
-                    Name = product.Name,
-                    Price = product.Price,
-                    Quantity = totalQuantity
-                });
+                    products[index].Quantity = productHistory.Quantity;
+                }
             }
 
-            return productWithQuantities.OrderByDescending(x => x.Quantity).ToList();
+            return products.OrderByDescending(x => x.Quantity).ToList();
         }
     }
 }
