@@ -10,7 +10,7 @@ namespace Infrastructure.IntegrationTests.Api.WoolworthsApiClient
     public class GetShopperHistoryTests
     {
         [Fact]
-        public async Task GetShopperHistoryAsync_ShouldReturnCorrectResponse()
+        public async Task GetShopperHistoryAsync_ShouldReturn_CorrectResponse()
         {
             // Arrange
             var client = new WoolworthsApiClientFactory().CreateClient();

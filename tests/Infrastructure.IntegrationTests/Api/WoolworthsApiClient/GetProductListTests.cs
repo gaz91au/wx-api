@@ -11,7 +11,7 @@ namespace Infrastructure.IntegrationTests.Api.WoolworthsApiClient
     {
 
         [Fact]
-        public async Task GetProductListAsync_ShouldReturnCorrectResponse()
+        public async Task GetProductListAsync_ShouldReturn_CorrectResponse()
         {
             // Arrange
             var client = new WoolworthsApiClientFactory().CreateClient();

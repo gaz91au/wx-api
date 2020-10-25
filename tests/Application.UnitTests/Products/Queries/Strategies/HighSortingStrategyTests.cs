@@ -17,7 +17,7 @@ namespace Application.UnitTests.Products.Queries.Strategies
         }
 
         [Fact]
-        public async Task GivenProducts_ShouldReturnSortedList()
+        public async Task GivenProducts_ShouldReturn_SortedList()
         {
             // Arrange
             var strategy = new HighSortingStrategy();

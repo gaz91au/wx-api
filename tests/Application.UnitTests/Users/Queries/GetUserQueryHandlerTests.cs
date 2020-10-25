@@ -18,7 +18,7 @@ namespace Application.UnitTests.Users.Queries
         }
 
         [Fact]
-        public async Task GivenValidRequest_ShouldReturnCorrectResponse()
+        public async Task GivenValidRequest_ShouldReturn_CorrectResponse()
         {
             // Arrange
             var query = new GetUserQuery();

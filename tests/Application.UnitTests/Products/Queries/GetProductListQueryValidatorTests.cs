@@ -14,7 +14,7 @@ namespace Application.UnitTests.Products.Queries
         }
 
         [Fact]
-        public void GivenEmptySortOption_ShouldHaveValidationError()
+        public void GivenEmptySortOption_ShouldHave_ValidationError()
         {
             _validator.ShouldHaveValidationErrorFor(x => x.SortOption, string.Empty);
         }

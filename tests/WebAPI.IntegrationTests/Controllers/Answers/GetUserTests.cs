@@ -18,7 +18,7 @@ namespace WebAPI.IntegrationTests.Controllers.Answers
         }
 
         [Fact]
-        public async Task GivenValidRequest_ShouldReturnCorrectResponse()
+        public async Task GivenValidRequest_ShouldReturn_CorrectResponse()
         {
             // Arrange
             var client = _factory.CreateClient();

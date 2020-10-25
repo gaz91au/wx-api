@@ -18,7 +18,7 @@ namespace WebAPI.IntegrationTests.Controllers.Answers
         }
 
         [Fact]
-        public async Task GivenAscendingSortOption_ShouldReturnCorrectResponse()
+        public async Task GivenAscendingSortOption_ShouldReturn_CorrectResponse()
         {
             // Arrange
             var client = _factory.CreateClient();
@@ -32,7 +32,7 @@ namespace WebAPI.IntegrationTests.Controllers.Answers
             content.Should().BeInAscendingOrder(x => x.Name);
         }
         [Fact]
-        public async Task GivenDescendingSortOption_ShouldReturnCorrectResponse()
+        public async Task GivenDescendingSortOption_ShouldReturn_CorrectResponse()
         {
             // Arrange
             var client = _factory.CreateClient();
@@ -47,7 +47,7 @@ namespace WebAPI.IntegrationTests.Controllers.Answers
         }
 
         [Fact]
-        public async Task GivenHighSortOption_ShouldReturnCorrectResponse()
+        public async Task GivenHighSortOption_ShouldReturn_CorrectResponse()
         {
             // Arrange
             var client = _factory.CreateClient();
@@ -62,7 +62,7 @@ namespace WebAPI.IntegrationTests.Controllers.Answers
         }
 
         [Fact]
-        public async Task GivenLowSortOption_ShouldReturnCorrectResponse()
+        public async Task GivenLowSortOption_ShouldReturn_CorrectResponse()
         {
             // Arrange
             var client = _factory.CreateClient();
@@ -77,7 +77,7 @@ namespace WebAPI.IntegrationTests.Controllers.Answers
         }
 
         [Fact]
-        public async Task GivenRecommendedSortOption_ShouldReturnCorrectResponse()
+        public async Task GivenRecommendedSortOption_ShouldReturn_CorrectResponse()
         {
             // Arrange
             var client = _factory.CreateClient();

@@ -26,7 +26,7 @@ namespace Application.UnitTests.Products.Queries
         }
 
         [Fact]
-        public async Task GivenAscendingSortOption_ShouldReturnCorrectResponse()
+        public async Task GivenAscendingSortOption_ShouldReturn_ProductsInAscendingOrder()
         {
             // Arrange
             var query = new GetProductListQuery() { SortOption = "ascending" };
@@ -42,7 +42,7 @@ namespace Application.UnitTests.Products.Queries
         }
 
         [Fact]
-        public async Task GivenDescendingSortOption_ShouldReturnCorrectResponse()
+        public async Task GivenDescendingSortOption_ShouldReturn_ProductsInDescendingOrder()
         {
             // Arrange
             var query = new GetProductListQuery() { SortOption = "descending" };
@@ -58,7 +58,7 @@ namespace Application.UnitTests.Products.Queries
         }
 
         [Fact]
-        public async Task GivenHighSortOption_ShouldReturnCorrectResponse()
+        public async Task GivenHighSortOption_ShouldReturn_ProductsInHighOrder()
         {
             // Arrange
             var query = new GetProductListQuery() { SortOption = "high" };
@@ -74,7 +74,7 @@ namespace Application.UnitTests.Products.Queries
         }
 
         [Fact]
-        public async Task GivenLowSortOption_ShouldReturnCorrectResponse()
+        public async Task GivenLowSortOption_ShouldReturn_ProductsInLowOrder()
         {
             // Arrange
             var query = new GetProductListQuery() { SortOption = "low" };
@@ -90,7 +90,7 @@ namespace Application.UnitTests.Products.Queries
         }
 
         [Fact]
-        public async Task GivenRecommendedSortOption_ShouldReturnCorrectResponse()
+        public async Task GivenRecommendedSortOption_ShouldReturn_ProductsInRecommendedOrder()
         {
             // Arrange
             var query = new GetProductListQuery() { SortOption = "recommended" };
