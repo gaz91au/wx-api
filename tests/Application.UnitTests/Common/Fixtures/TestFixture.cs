@@ -1,10 +1,12 @@
 ﻿using Application.Common.Interfaces;
 using Application.Common.Mappings;
+using Application.Products.Queries.Factories;
 using Application.Products.Queries.Strategies;
 using Application.UnitTests.Common.Helpers;
 using AutoMapper;
 using Moq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Application.UnitTests.Common.Fixtures
 {
@@ -29,26 +31,24 @@ namespace Application.UnitTests.Common.Fixtures
 
             // Configure and setup IProductsApi
             var mockProducstApi = new Mock<IProductsApi>();
-            mockProducstApi.Setup(api => api.GetProductListAsync()).Returns(TestHelper.GetRandomProductsAsync());
-            mockProducstApi.Setup(api => api.GetShopperHistoryAsync()).Returns(TestHelper.GetRandomShopperHistoryAsync());
+            mockProducstApi.Setup(api => api.GetProductListAsync()).Returns(Task.FromResult(TestHelper.GetRandomProducts()));
+            mockProducstApi.Setup(api => api.GetShopperHistoryAsync()).Returns(Task.FromResult(TestHelper.GetRandomShopperHistory()));
 
             ProductsApi = mockProducstApi.Object;
 
-            // Configure and setup IEnumerable<IProductQuery>
-            var mockAscendingProductsQuery = new Mock<AscendingProductsQuery>(mockProducstApi.Object);
-            var mockDescendingProductsQuery = new Mock<DescendingProductsQuery>(mockProducstApi.Object);
-            var mockHighProductsQuery = new Mock<HighProductsQuery>(mockProducstApi.Object);
-            var mockLowProductsQuery = new Mock<LowProductsQuery>(mockProducstApi.Object);
-            var mockRecommendedProductsQuery = new Mock<RecommendedProductsQuery>(mockProducstApi.Object);
+            // Configure and setup ISortingStrategyFactory
+            var mockAscendingSortingStrategy = new Mock<AscendingSortingStrategy>();
+            var mockDescendingSortingStrategy = new Mock<DescendingSortingStrategy>();
+            var mockHighSortingStrategy = new Mock<HighSortingStrategy>();
+            var mockLowSortingStrategy = new Mock<LowSortingStrategy>();
+            var mockRecommendedSortingStrategy = new Mock<RecommendedSortingStrategy>(mockProducstApi.Object);
 
-            ProductQueries = new List<IProductQuery> 
-            { 
-                mockAscendingProductsQuery.Object,
-                mockDescendingProductsQuery.Object,
-                mockHighProductsQuery.Object,
-                mockLowProductsQuery.Object,
-                mockRecommendedProductsQuery.Object
-            };
+            var hihi = new SortingStrategyFactory(mockAscendingSortingStrategy.Object,
+                mockDescendingSortingStrategy.Object,
+                mockHighSortingStrategy.Object,
+                mockLowSortingStrategy.Object,
+                mockRecommendedSortingStrategy.Object);
+    
         }
 
         public IConfigurationProvider ConfigurationProvider { get; }
@@ -57,7 +57,7 @@ namespace Application.UnitTests.Common.Fixtures
 
         public IUserManager UserManager { get; }
 
-        public IEnumerable<IProductQuery> ProductQueries { get; }
+        public ISortingStrategyFactory SortingStrategyFactory { get; }
 
         public IProductsApi ProductsApi { get; }
     }

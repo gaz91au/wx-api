@@ -15,11 +15,14 @@ namespace Application.UnitTests.Products.Queries
     public class GetProductListQueryHandlerTests : IClassFixture<TestFixture>
     {
         private readonly IMapper _mapper;
-        private readonly IEnumerable<IProductQuery> _productQueries;
+        private readonly IProductsApi _productsApi;
+        private readonly ISortingStrategyFactory _sortingStrategyFactory;
+        
         public GetProductListQueryHandlerTests(TestFixture fixture)
         {
             _mapper = fixture.Mapper;
-            _productQueries = fixture.ProductQueries;
+            _productsApi = fixture.ProductsApi;
+            _sortingStrategyFactory = fixture.SortingStrategyFactory;
         }
 
         [Fact]
@@ -27,7 +30,7 @@ namespace Application.UnitTests.Products.Queries
         {
             // Arrange
             var query = new GetProductListQuery() { SortOption = "ascending" };
-            var handler = new GetProductListQueryHandler(_mapper, _productQueries);
+            var handler = new GetProductListQueryHandler(_mapper, _productsApi, _sortingStrategyFactory);
 
             // Act
             var response = await handler.Handle(query, CancellationToken.None);
@@ -43,7 +46,7 @@ namespace Application.UnitTests.Products.Queries
         {
             // Arrange
             var query = new GetProductListQuery() { SortOption = "descending" };
-            var handler = new GetProductListQueryHandler(_mapper, _productQueries);
+            var handler = new GetProductListQueryHandler(_mapper, _productsApi, _sortingStrategyFactory);
 
             // Act
             var response = await handler.Handle(query, CancellationToken.None);
@@ -59,7 +62,7 @@ namespace Application.UnitTests.Products.Queries
         {
             // Arrange
             var query = new GetProductListQuery() { SortOption = "high" };
-            var handler = new GetProductListQueryHandler(_mapper, _productQueries);
+            var handler = new GetProductListQueryHandler(_mapper, _productsApi, _sortingStrategyFactory);
 
             // Act
             var response = await handler.Handle(query, CancellationToken.None);
@@ -75,7 +78,7 @@ namespace Application.UnitTests.Products.Queries
         {
             // Arrange
             var query = new GetProductListQuery() { SortOption = "low" };
-            var handler = new GetProductListQueryHandler(_mapper, _productQueries);
+            var handler = new GetProductListQueryHandler(_mapper, _productsApi, _sortingStrategyFactory);
 
             // Act
             var response = await handler.Handle(query, CancellationToken.None);
@@ -91,7 +94,7 @@ namespace Application.UnitTests.Products.Queries
         {
             // Arrange
             var query = new GetProductListQuery() { SortOption = "recommended" };
-            var handler = new GetProductListQueryHandler(_mapper, _productQueries);
+            var handler = new GetProductListQueryHandler(_mapper, _productsApi, _sortingStrategyFactory);
 
             // Act
             var response = await handler.Handle(query, CancellationToken.None);

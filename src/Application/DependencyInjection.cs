@@ -1,5 +1,6 @@
 ﻿using Application.Common.Behaviours;
 using Application.Common.Interfaces;
+using Application.Products.Queries.Factories;
 using Application.Products.Queries.Strategies;
 using AutoMapper;
 using MediatR;
@@ -16,11 +17,13 @@ namespace Application
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
 
-            services.AddScoped<IProductQuery, AscendingProductsQuery>();
-            services.AddScoped<IProductQuery, DescendingProductsQuery>();
-            services.AddScoped<IProductQuery, HighProductsQuery>();
-            services.AddScoped<IProductQuery, LowProductsQuery>();
-            services.AddScoped<IProductQuery, RecommendedProductsQuery>();
+            services.AddScoped<ISortingStrategyFactory, SortingStrategyFactory>();
+
+            services.AddScoped<AscendingSortingStrategy>();
+            services.AddScoped<DescendingSortingStrategy>();
+            services.AddScoped<HighSortingStrategy>();
+            services.AddScoped<LowSortingStrategy>();
+            services.AddScoped<RecommendedSortingStrategy>();
 
             return services;
         }

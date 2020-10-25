@@ -1,39 +1,28 @@
-﻿using Application.Common.Enums;
-using Application.Common.Exceptions;
+﻿using Application.Common.Exceptions;
 using Application.Common.Interfaces;
-using Application.Common.Options;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Application.Products.Queries.Strategies
 {
-    public class RecommendedProductsQuery : IProductQuery
+    public class RecommendedSortingStrategy : ISortingStrategy
     {
         private readonly IProductsApi _productsApi;
 
-        public RecommendedProductsQuery(IProductsApi productsApi)
+        public RecommendedSortingStrategy(IProductsApi productsApi)
         {
             _productsApi = productsApi ?? throw new ArgumentNullException(nameof(productsApi));
         }
-
-        public ProductQueryOptions QueryOptions => new ProductQueryOptions
+        public IList<Product> Sort(IList<Product> products)
         {
-            SortOption = SortOption.Recommended
-        };
-
-        public async Task<IList<Product>> GetProducts()
-        {
-            var allProducts = await _productsApi.GetProductListAsync();
-
-            if (allProducts == null)
+            if (products == null)
             {
                 throw new NotFoundException(nameof(Product));
             }
 
-            var shopperHistories = await _productsApi.GetShopperHistoryAsync();
+            var shopperHistories = _productsApi.GetShopperHistoryAsync().GetAwaiter().GetResult();
 
             if (shopperHistories == null)
             {
@@ -61,10 +50,10 @@ namespace Application.Products.Queries.Strategies
                                                 Price = p.First().Price,
                                                 Quantity = p.Sum(s => s.Quantity)
                                             });
-                                            
+
             var productWithQuantities = new List<Product>();
 
-            foreach (var product in allProducts)
+            foreach (var product in products)
             {
                 var totalQuantity = 0m;
 

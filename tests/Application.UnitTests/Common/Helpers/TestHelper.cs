@@ -8,7 +8,7 @@ namespace Application.UnitTests.Common.Helpers
 {
     public static class TestHelper
     {
-        public static async Task<IList<Product>> GetRandomProductsAsync()
+        public static IList<Product> GetRandomProducts()
         {
             var products = new List<Product>();
 
@@ -27,7 +27,7 @@ namespace Application.UnitTests.Common.Helpers
             return products;
         }
 
-        public static async Task<IList<ShopperHistory>> GetRandomShopperHistoryAsync()
+        public static IList<ShopperHistory> GetRandomShopperHistory()
         {
             var history = new List<ShopperHistory>();
 
@@ -38,7 +38,7 @@ namespace Application.UnitTests.Common.Helpers
                 history.Add(new ShopperHistory
                 {
                     CustomerId = i,
-                    Products = GetRandomProductsAsync().GetAwaiter().GetResult()
+                    Products = GetRandomProducts()
                 });
             };
 

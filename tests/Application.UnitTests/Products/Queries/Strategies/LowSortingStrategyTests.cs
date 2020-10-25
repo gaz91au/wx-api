@@ -7,26 +7,27 @@ using Xunit;
 
 namespace Application.UnitTests.Products.Queries.Strategies
 {
-    public class RecommendedProductsQueryTests : IClassFixture<TestFixture>
+    public class LowSortingStrategyTests : IClassFixture<TestFixture>
     {
         private readonly IProductsApi _productsApi;
 
-        public RecommendedProductsQueryTests(TestFixture fixture)
+        public LowSortingStrategyTests(TestFixture fixture)
         {
             _productsApi = fixture.ProductsApi;
         }
 
         [Fact]
-        public async Task GivenValidQuery_ShouldReturnCorrectProductList()
+        public async Task GivenProducts_ShouldReturnSortedList()
         {
             // Arrange
-            var query = new RecommendedProductsQuery(_productsApi);
+            var strategy = new LowSortingStrategy();
+            var products = await _productsApi.GetProductListAsync();
 
             // Act
-            var response = await query.GetProducts();
+            var response = strategy.Sort(products);
 
             // Assert
-            response.Should().BeInDescendingOrder(x => x.Quantity);
+            response.Should().BeInAscendingOrder(x => x.Price);
         }
     }
 }
