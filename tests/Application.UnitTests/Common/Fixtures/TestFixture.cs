@@ -43,12 +43,14 @@ namespace Application.UnitTests.Common.Fixtures
             var mockLowSortingStrategy = new Mock<LowSortingStrategy>();
             var mockRecommendedSortingStrategy = new Mock<RecommendedSortingStrategy>(mockProducstApi.Object);
 
-            var hihi = new SortingStrategyFactory(mockAscendingSortingStrategy.Object,
+            var mockSortingStrategyFactory = new Mock<SortingStrategyFactory>(
+                mockAscendingSortingStrategy.Object,
                 mockDescendingSortingStrategy.Object,
                 mockHighSortingStrategy.Object,
                 mockLowSortingStrategy.Object,
                 mockRecommendedSortingStrategy.Object);
-    
+
+            SortingStrategyFactory = mockSortingStrategyFactory.Object;
         }
 
         public IConfigurationProvider ConfigurationProvider { get; }
