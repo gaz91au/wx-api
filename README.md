@@ -5,7 +5,11 @@ This is a sample api containing various supermarket related endpoints.
 
 ### Project Structure
 - This application is written using the Clean Architecture approach.
-- References: [Clean Architecture with ASP.NET Core 2.1](https://youtu.be/_lwCVE_XgqI) ([slide deck](/Docs/Slides.pdf))
+- References: 
+    - [A quick introduction to clean architecture
+](https://www.freecodecamp.org/news/a-quick-introduction-to-clean-architecture-990c014448d2/)
+    - [Clean Architecture with ASP.NET Core 2.1](https://youtu.be/_lwCVE_XgqI)
+    - [NorthwindTraders - Sample application written using Clean Architecture](https://github.com/jasontaylordev/NorthwindTraders)
 
 ### Technologies:
 - .Net Core
