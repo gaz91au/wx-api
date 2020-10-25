@@ -24,5 +24,5 @@ This is a sample api containing various supermarket related endpoints.
 - Bogus
 
 ### Notes:
-- Logging: All application level exceptions are logged via the Serilog middleware.
-- Error Handling: All application level exceptions intercepted in [CustomExceptionHandlerMiddleware](https://github.com/gaz91au/wx-api/blob/master/src/WebAPI/Middleware/CustomExceptionHandlerMiddleware.cs) and produces a [ProblemDetails](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.problemdetails?view=aspnetcore-3.1) response, which is based on the [Problem Details for HTTP APIs Specification](https://tools.ietf.org/html/rfc7807).
+- **Logging**: All application level exceptions are logged via the Serilog middleware.
+- **Error Handling**: All application level exceptions intercepted in [CustomExceptionHandlerMiddleware](https://github.com/gaz91au/wx-api/blob/master/src/WebAPI/Middleware/CustomExceptionHandlerMiddleware.cs) and produces a [ProblemDetails](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.problemdetails?view=aspnetcore-3.1) response, which is based on the [Problem Details for HTTP APIs Specification](https://tools.ietf.org/html/rfc7807).
