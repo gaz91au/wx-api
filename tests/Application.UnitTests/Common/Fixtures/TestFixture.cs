@@ -27,11 +27,14 @@ namespace Application.UnitTests.Common.Fixtures
 
             UserManager = mockUserManager.Object;
 
-            // Configure and setup IProductQueryFactory
+            // Configure and setup IProductsApi
             var mockProducstApi = new Mock<IProductsApi>();
             mockProducstApi.Setup(api => api.GetProductListAsync()).Returns(TestHelper.GetRandomProductsAsync());
             mockProducstApi.Setup(api => api.GetShopperHistoryAsync()).Returns(TestHelper.GetRandomShopperHistoryAsync());
 
+            ProductsApi = mockProducstApi.Object;
+
+            // Configure and setup IEnumerable<IProductQuery>
             var mockAscendingProductsQuery = new Mock<AscendingProductsQuery>(mockProducstApi.Object);
             var mockDescendingProductsQuery = new Mock<DescendingProductsQuery>(mockProducstApi.Object);
             var mockHighProductsQuery = new Mock<HighProductsQuery>(mockProducstApi.Object);
@@ -55,5 +58,7 @@ namespace Application.UnitTests.Common.Fixtures
         public IUserManager UserManager { get; }
 
         public IEnumerable<IProductQuery> ProductQueries { get; }
+
+        public IProductsApi ProductsApi { get; }
     }
 }

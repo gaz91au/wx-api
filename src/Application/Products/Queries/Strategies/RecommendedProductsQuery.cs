@@ -28,6 +28,11 @@ namespace Application.Products.Queries.Strategies
         {
             var allProducts = await _productsApi.GetProductListAsync();
 
+            if (allProducts == null)
+            {
+                throw new NotFoundException(nameof(Product));
+            }
+
             var shopperHistories = await _productsApi.GetShopperHistoryAsync();
 
             if (shopperHistories == null)
@@ -57,7 +62,7 @@ namespace Application.Products.Queries.Strategies
                                                 Quantity = p.Sum(s => s.Quantity)
                                             });
                                             
-            var recommendedProducts = new List<Product>();
+            var productWithQuantities = new List<Product>();
 
             foreach (var product in allProducts)
             {
@@ -69,8 +74,8 @@ namespace Application.Products.Queries.Strategies
                 {
                     totalQuantity = productHistory.Quantity;
                 }
-                
-                recommendedProducts.Add(new Product
+
+                productWithQuantities.Add(new Product
                 {
                     Name = product.Name,
                     Price = product.Price,
@@ -78,7 +83,7 @@ namespace Application.Products.Queries.Strategies
                 });
             }
 
-            return recommendedProducts.OrderByDescending(x => x.Quantity).ToList();
+            return productWithQuantities.OrderByDescending(x => x.Quantity).ToList();
         }
     }
 }
