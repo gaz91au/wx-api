@@ -52,7 +52,7 @@ namespace WebAPI.Controllers
         [ProducesResponseType(typeof(ProblemDetails), 400)]
         [ProducesResponseType(typeof(ProblemDetails), 404)]
         [ProducesResponseType(typeof(ProblemDetails), 500)]
-        public async Task<IActionResult> GetSortedProductsAsync(string sortOption)
+        public async Task<IActionResult> GetSortedProductListAsync(string sortOption)
         {
             return Ok(await _mediator.Send(new GetProductListQuery { SortOption = sortOption }));
         }
