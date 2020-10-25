@@ -15,6 +15,7 @@ namespace Application.Products.Queries.Strategies
         {
             _productsApi = productsApi ?? throw new ArgumentNullException(nameof(productsApi));
         }
+
         public IList<Product> Sort(IList<Product> products)
         {
             if (products == null)
