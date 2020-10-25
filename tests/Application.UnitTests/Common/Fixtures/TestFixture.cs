@@ -37,18 +37,12 @@ namespace Application.UnitTests.Common.Fixtures
             ProductsApi = mockProducstApi.Object;
 
             // Configure and setup ISortingStrategyFactory
-            var mockAscendingSortingStrategy = new Mock<AscendingSortingStrategy>();
-            var mockDescendingSortingStrategy = new Mock<DescendingSortingStrategy>();
-            var mockHighSortingStrategy = new Mock<HighSortingStrategy>();
-            var mockLowSortingStrategy = new Mock<LowSortingStrategy>();
-            var mockRecommendedSortingStrategy = new Mock<RecommendedSortingStrategy>(mockProducstApi.Object);
-
             var mockSortingStrategyFactory = new Mock<SortingStrategyFactory>(
-                mockAscendingSortingStrategy.Object,
-                mockDescendingSortingStrategy.Object,
-                mockHighSortingStrategy.Object,
-                mockLowSortingStrategy.Object,
-                mockRecommendedSortingStrategy.Object);
+                new AscendingSortingStrategy(),
+                new DescendingSortingStrategy(),
+                new HighSortingStrategy(),
+                new LowSortingStrategy(),
+                new RecommendedSortingStrategy(mockProducstApi.Object));
 
             SortingStrategyFactory = mockSortingStrategyFactory.Object;
         }
