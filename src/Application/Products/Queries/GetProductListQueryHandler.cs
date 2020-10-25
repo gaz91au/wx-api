@@ -1,7 +1,9 @@
 ﻿using Application.Common.Enums;
+using Application.Common.Exceptions;
 using Application.Common.Interfaces;
 using Application.Common.Models;
 using AutoMapper;
+using Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -31,6 +33,11 @@ namespace Application.Products.Queries
             };
 
             var products = await _productsApi.GetProductListAsync();
+
+            if (products == null)
+            {
+                throw new NotFoundException(nameof(Product));
+            }
 
             var strategy = _sortingStrategyFactory.GetStrategy(sortOption);
 

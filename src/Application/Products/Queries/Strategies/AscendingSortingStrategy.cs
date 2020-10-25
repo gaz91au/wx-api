@@ -10,11 +10,6 @@ namespace Application.Products.Queries.Strategies
     {
         public IList<Product> Sort(IList<Product> products)
         {
-            if (products == null)
-            {
-                throw new NotFoundException(nameof(Product));
-            }
-
             return products.OrderBy(o => o.Name).ToList();
         }
     }

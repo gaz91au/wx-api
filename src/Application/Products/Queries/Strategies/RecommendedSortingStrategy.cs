@@ -18,11 +18,6 @@ namespace Application.Products.Queries.Strategies
 
         public IList<Product> Sort(IList<Product> products)
         {
-            if (products == null)
-            {
-                throw new NotFoundException(nameof(Product));
-            }
-
             var shopperHistories = _productsApi.GetShopperHistoryAsync().GetAwaiter().GetResult();
 
             if (shopperHistories == null)
